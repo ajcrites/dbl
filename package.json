@@ -3,5 +3,9 @@
     "version": "0.0.0",
     "description": "List of resources for developers to learn",
     "author": "Andrew Crites <acrites@mobiquityinc.com>",
-    "license": "unlicense"
+    "license": "unlicense",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ajcrites/dbl.git"
+    }
 }
