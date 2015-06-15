@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "resource": {
+      "$uid": {
+        ".write": "auth !== null && auth.uid === $uid",
+        ".read": "auth !== null"
+      }
+    }
+  }
+}
