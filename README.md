@@ -31,4 +31,6 @@ Nada
  sharing of particular resources
 * Editing of a submitted resource under some conditions
 * Deletion of a submitted resource under some conditions
+* Record more states of a resource (not started, in
+ progress, completed, et. al.)
 * Improved aesthetic
