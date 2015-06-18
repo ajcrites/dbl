@@ -6,7 +6,5 @@ angular.module("dbl").directive("dblHeader", () => {
     };
 }).controller("DblHeaderCtrl", function (auth) {
     this.isLoggedIn = auth.isLoggedIn;
-    this.logout = () => {
-        auth.logout();
-    };
+    this.logout = auth.logout;
 });

@@ -8,36 +8,39 @@ angular.module("dbl").factory("auth", (firebaseUrl, $firebaseAuth, $firebaseObje
      * Retrieve the user's auth information when this service loads (when it is
      * first needed) for use with the session
      */
-    let auth = $firebaseAuth(new Firebase(firebaseUrl)),
+    let ref = new Firebase(firebaseUrl),
+        auth = $firebaseAuth(ref),
         sessionAuth = auth.$getAuth();
 
+    /**
+     * Attempt to create a user account for DBL if one does not exist already
+     */
+    function createUser() {
+        let userRef = new Firebase(firebaseUrl + "/user/" + sessionAuth.uid),
+            user = $firebaseObject(userRef);
+
+        user.$loaded().then(() => {
+            if (!user.$value) {
+                user.name = sessionAuth.google.displayName;
+                user.email = sessionAuth.google.email;
+                user.$save();
+            }
+        });
+    }
+
     return {
+        ref,
         isLoggedIn: () => {
             return sessionAuth && !!sessionAuth.uid;
         },
         /**
          * Initiate Firebase auth login process for Google OAuth
          */
-        initiateLogin: () => {
+        initiateLogin: function () {
             return auth.$authWithOAuthPopup("google", {scope: "profile, email"})
                 .then(authData => sessionAuth = authData)
-                .then(auth.createUser)
+                .then(createUser)
                 .catch(err => alert(err));
-        },
-        /**
-         * Attempt to create a user account for DBL if one does not exist already
-         */
-        createUser: () => {
-            let userRef = new Firebase(firebaseUrl + "/user/" + sessionAuth.uid),
-                user = $firebaseObject(userRef);
-
-            user.$loaded().then(() => {
-                if (!user.$value) {
-                    user.name = sessionAuth.google.displayName;
-                    user.email = sessionAuth.google.email;
-                    user.$save();
-                }
-            });
         },
         /**
          * Destroy current auth session

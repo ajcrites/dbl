@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/ajcrites/dbl.git"
   },
+  "scripts": {
+      "e2e": "babel e2e > e2e-spec.js && protractor protractor.conf.js"
+  },
   "dependencies": {
     "del": "^1.2.0",
     "gulp": "^3.9.0",
