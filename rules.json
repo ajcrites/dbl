@@ -1,12 +1,23 @@
 {
-  "rules": {
-    ".read": false,
-    ".write": false,
-    "resource": {
-      "$uid": {
-        ".write": "auth !== null && auth.uid === $uid",
-        ".read": true
-      }
+    "rules": {
+        ".read": false,
+        ".write": false,
+        "user": {
+            ".read": true,
+            "$userid": {
+                ".write": "$userid == auth.uid"
+            }
+        },
+        "resource": {
+            ".read": true,
+            ".write": "auth !== null",
+            "$resourceid": {
+                ".write": "!data.exists() || auth.uid == data.child('creator').val()"
+            }
+        },
+        "readers": {
+            ".read": true,
+            ".write": "auth !== null"
+        }
     }
-  }
 }

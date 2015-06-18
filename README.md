@@ -12,12 +12,9 @@ List of features for first release
 
 * Authenticate users via Google+
 * Allow users to record a resource
+ * Describe the resource
  * Link to the resource
- * Categorize by type (tutorial, video, project)
- * Tag the resource platform, technology, framewor, et. al.
-* Explore other resources
- * By tag
- * By submitter
+ * Categorize by type (book, tutorial, video, project)
 * Record completion of a resource
 
 ### Complete
@@ -26,6 +23,12 @@ Nada
 
 ## Future features
 
+* Tag the resource platform, technology, framework, et. al.
+ * Sub-tags (e.g. AngularJS as a sub tag of JavaScript)
+* Explore other resources
+ * By category
+ * By tag
+ * By submitter
 * Authenticate users by other resources
 * Split users into organizations to allow more centralized
  sharing of particular resources
