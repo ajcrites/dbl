@@ -3,3 +3,6 @@
  */
 beforeEach(module("dbl"));
 beforeEach(module("test-templates"));
+before(() => {
+    MockFirebase.override();
+})
